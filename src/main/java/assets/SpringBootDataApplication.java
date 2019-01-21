@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,19 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import assets.model.entity.ps.Course;
-import assets.model.entity.ps.Module;
 import assets.repository.CourseRepository;
 
 
-
-
-@SpringBootApplication
 @RestController
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
 public class SpringBootDataApplication {
-	
-
-
-	
 	
 	@Autowired
 	private CourseRepository courseRepository;
@@ -42,9 +35,7 @@ public class SpringBootDataApplication {
 		return courses.getContent();
 		
 	}
-	
-	
-
+		
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootDataApplication.class, args);
 	}
